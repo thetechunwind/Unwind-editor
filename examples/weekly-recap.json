@@ -1,0 +1,17 @@
+{
+  "canvas": "1920x1080",
+  "fps": 30,
+  "clips": [
+    { "type": "sting", "start": 0, "dur": 3.5 },
+    { "type": "recap", "start": 3.5, "dur": 5, "tag": "Weekly recap", "num": "42", "head": "The week in tech, *unwound*" },
+    { "type": "numcard", "start": 8.5, "dur": 4, "num": "-13%", "head": "Alphabet's worst day *ever*" },
+    { "type": "head", "start": 12.5, "dur": 5, "head": "The first *touch Mac* is here" },
+    { "type": "lower", "start": 13, "dur": 4, "head": "Credit", "sub": "Apple Newsroom" },
+    { "type": "chartbar", "start": 17.5, "dur": 6.5, "tag": "Market share", "head": "Who *leads* the pack",
+      "sub": "Source: add your source",
+      "data": ["Brand A, 34%", "Brand B, 27%", "Brand C, 19%", "Others, 20%"] },
+    { "type": "text", "start": 24, "dur": 3.5, "text": "Which story matters *most*?",
+      "keys": { "opacity": [[0, 0], [0.6, 1]], "scale": [[0, 0.9], [0.6, 1]] } },
+    { "type": "endcard", "start": 27.5, "dur": 8, "head": "See you *next week*", "data": ["COMMENT", "SUBSCRIBE"] }
+  ]
+}

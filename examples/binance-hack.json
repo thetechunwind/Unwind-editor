@@ -1,0 +1,62 @@
+{
+  "canvas": "1920x1080",
+  "fps": 30,
+  "background": "black",
+  "clips": [
+
+    // 1. HOOK (0:00-0:04)
+    { "type": "image", "file": "binance-logo.png", "start": 0.5, "dur": 0.9, "width": 26 },
+    { "type": "numcard", "start": 1.4, "dur": 1.4,
+      "num": "$6.3B", "head": "Taken from *Binance*" },
+    { "type": "numcard", "start": 2.8, "dur": 1.2,
+      "num": "20 MIN", "head": "In around *twenty minutes*" },
+
+    // 2. WHAT HAPPENED (0:04-0:14)
+    { "type": "chains", "start": 4, "dur": 10,
+      "tag": "Largest crypto hack on record",
+      "head": "Money left wallets on *ten blockchains*",
+      "num": "10 BLOCKCHAINS",
+      "data": ["Ethereum", "BNB Chain", "Tron", "Solana", "Polygon",
+               "Arbitrum", "Base", "Avalanche", "Optimism", "Bitcoin"] },
+    { "type": "lower", "start": 5, "dur": 5, "head": "Credit", "sub": "AFP, NPR" },
+
+    // 3. WHO (0:14-0:25)
+    { "type": "banner", "start": 14, "dur": 5.5,
+      "tag": "Attribution",
+      "head": "TRM Labs says *North Korea's TraderTraitor* group" },
+    { "type": "story", "start": 19.5, "dur": 5.5,
+      "tag": "Analysts, not official",
+      "head": "Same group as the *Bybit* hack",
+      "sub": "TRM Labs, high confidence" },
+    { "type": "lower", "start": 16, "dur": 5, "head": "Credit", "sub": "TRM Labs blog" },
+
+    // 4. THE RECOVERY (0:25-0:36)
+    { "type": "split", "start": 25, "dur": 11,
+      "tag": "Funds",
+      "head": "About *$3B* frozen, the rest *still being traced*",
+      "num": "$6.3B",
+      "data": ["Frozen (Tether, Circle)|~$3B", "Still being traced|~$3.3B"],
+      "colors": { "head": "#C8F23A", "hl": "#F2F5EA" } },
+    { "type": "lower", "start": 27, "dur": 5, "head": "Credit", "sub": "Binance and TRM Labs figures" },
+
+    // 5. YOUR MONEY (0:36-0:46)
+    { "type": "compare", "start": 36, "dur": 10,
+      "tag": "Binance says",
+      "head": "What it means for *your money*",
+      "data": ["User funds|SAFE|Binance says",
+               "Losses|COVERED|Binance will cover all of it",
+               "Withdrawals|PAUSED|Expected back by Sunday morning"] },
+    { "type": "lower", "start": 38, "dur": 5, "head": "Credit", "sub": "Binance via CNN and CBS" },
+
+    // 6. THE UNWIND (0:46-0:50)
+    { "type": "image", "file": "binance-logo.png", "start": 46, "dur": 1.3, "width": 26,
+      "keys": { "scale": [[0, 1], [1.3, 1.12]], "opacity": [[0, 1], [1, 1], [1.3, 0]] } },
+    { "type": "endcard", "start": 47.3, "dur": 2.7,
+      "head": "The Unwind: *would you keep your crypto on an exchange?*",
+      "data": ["COMMENT", "SUBSCRIBE"] },
+
+    // Audio: add your files, then use these names (or rename them here)
+    { "type": "audio", "file": "voiceover.mp3", "start": 0 },
+    { "type": "audio", "file": "music.mp3", "start": 0, "dur": 50, "volume": 0.3, "fadeOut": 2 }
+  ]
+}
