@@ -1,0 +1,45 @@
+name: Build Tech Unwind
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+      - name: Build for Apple Silicon and Intel
+        run: |
+          cargo build --release --target aarch64-apple-darwin
+          cargo build --release --target x86_64-apple-darwin
+      - name: Make the app and disk image
+        run: |
+          APP="Tech Unwind.app"
+          mkdir -p "$APP/Contents/MacOS"
+          lipo -create -output "$APP/Contents/MacOS/tech_unwind" \
+            target/aarch64-apple-darwin/release/tech_unwind \
+            target/x86_64-apple-darwin/release/tech_unwind
+          cat > "$APP/Contents/Info.plist" <<'PLIST'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>CFBundleName</key><string>Tech Unwind</string>
+            <key>CFBundleDisplayName</key><string>Tech Unwind</string>
+            <key>CFBundleIdentifier</key><string>com.techunwind.editor</string>
+            <key>CFBundleExecutable</key><string>tech_unwind</string>
+            <key>CFBundlePackageType</key><string>APPL</string>
+            <key>CFBundleVersion</key><string>0.1.0</string>
+            <key>CFBundleShortVersionString</key><string>0.1.0</string>
+            <key>NSHighResolutionCapable</key><true/>
+            <key>LSMinimumSystemVersion</key><string>11.0</string>
+          </dict></plist>
+          PLIST
+          codesign --force --deep --sign - "$APP"
+          mkdir dmg && cp -R "$APP" dmg/ && ln -s /Applications dmg/Applications
+          hdiutil create -volname "Tech Unwind" -srcfolder dmg -ov -format UDZO TechUnwind-mac.dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TechUnwind-mac
+          path: TechUnwind-mac.dmg
